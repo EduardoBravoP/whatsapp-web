@@ -8,3 +8,13 @@ const firebaseConfig = {
   messagingSenderId: process.env.FIREBASE_MESSAGING_SENDER_ID,
   appId: process.env.FIREBASE_APP_ID
 };
+
+const app = !firebase.apps.length
+  ? firebase.initializeApp(firebaseConfig, {})
+  : firebase.app()
+
+const db = app.firestore();
+const auth = app.auth();
+const provider = new firebase.auth.GoogleAuthProvider();
+
+export { db, auth, provider };
